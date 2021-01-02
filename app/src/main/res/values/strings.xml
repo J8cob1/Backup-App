@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Backup App</string>
+    <string name="backup_tab_title">Backup</string>
+    <string name="restore_tab_title">Restore</string>
+    <string name="settings_tab_title">Settings</string>
 </resources>
