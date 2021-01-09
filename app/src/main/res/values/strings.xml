@@ -3,4 +3,24 @@
     <string name="backup_tab_title">Backup</string>
     <string name="restore_tab_title">Restore</string>
     <string name="settings_tab_title">Settings</string>
+
+    <string name="settings_tab_backup_loc">Where to Backup:</string>
+    <string name="settings_tab_backup_loc_type_label">Type:</string>
+    <string name="settings_tab_backup_loc_label">Location:</string>
+    <string name="settings_tab_backup_loc_hint">Enter Specific Location Here</string>
+    <string-array name="location_types">
+        <item>Samba (Windows Network) Share</item>
+        <item>Linux Network Share (Not Yet Supported)</item>
+        <item>MAC Network Share (Not Yet Supported)</item>
+        <item>NextCloud (Not Yet Supported)</item>
+        <item>OwnCloud? (Not Yet Supported)</item>
+        <item>Google Drive (Not Yet Supported)</item>
+        <item>IDrive (Not Yet Supported)</item>
+    </string-array>
+    <string name="settings_tab_backup_content">What to Backup:</string>
+    <string name="settings_tab_backup_content_texts">Text Messages</string>
+    <string name="settings_tab_backup_content_photo_video">Photos and Videos</string>
+    <string name="settings_tab_backup_content_contacts">Contacts</string>
+    <string name="settings_tab_backup_content_apps">Apps</string>
+
 </resources>
