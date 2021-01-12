@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/settings_tab_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/settings_label_1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/design_default_color_primary"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="Restore Tab"
+            android:textColor="@color/design_default_color_on_primary"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+</ScrollView>
