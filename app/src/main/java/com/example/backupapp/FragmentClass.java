@@ -6,8 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.material.tabs.TabLayout;
-
 // Loads the settings fragment xml as it's view
 // https://developer.android.com/training/animation/screen-slide-2
 public class FragmentClass extends Fragment {
@@ -18,10 +16,8 @@ public class FragmentClass extends Fragment {
 
     // Non-Default Constructor. Specifies the fragment you want to load
     public FragmentClass(String fragment_type) {
-        if (fragment_type.equals("backup")) {
-            this.fragmentXMLResourceID = R.layout.backup_fragment;
-        } else if (fragment_type.equals("restore")) {
-            this.fragmentXMLResourceID = R.layout.restore_fragment; // Fix
+        if (fragment_type.equals("backup_restore")) {
+            this.fragmentXMLResourceID = R.layout.backup_restore_fragment;
         } else if (fragment_type.equals("settings")) {
             this.fragmentXMLResourceID = R.layout.settings_fragment; // Fix
         } else {

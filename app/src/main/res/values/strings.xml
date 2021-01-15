@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">Backup App</string>
-    <string name="backup_tab_title">Backup</string>
-    <string name="restore_tab_title">Restore</string>
+    <string name="backup_restore_tab_title">Backup/Restore</string>
     <string name="settings_tab_title">Settings</string>
 
     <string name="settings_tab_backup_loc">Where to Backup:</string>
@@ -22,5 +21,9 @@
     <string name="settings_tab_backup_content_photo_video">Photos and Videos</string>
     <string name="settings_tab_backup_content_contacts">Contacts</string>
     <string name="settings_tab_backup_content_apps">Apps</string>
+
+    <string name="backup_restore_tab_restore_label">Restore</string>
+    <string name="backup_restore_tab_new_backup_button_text">Create New Backup</string>
+
 
 </resources>

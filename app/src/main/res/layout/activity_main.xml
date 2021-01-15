@@ -20,20 +20,10 @@
                 android:id="@+id/backup-tab"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/backup_tab_title"
+                android:text="@string/backup_restore_tab_title"
                 tools:layout_conversion_absoluteHeight="0dp"
                 tools:layout_conversion_absoluteWidth="0dp"
                 tools:layout_editor_absoluteX="0dp"
-                tools:layout_editor_absoluteY="0dp" />
-
-            <com.google.android.material.tabs.TabItem
-                android:id="@+id/restore-tab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/restore_tab_title"
-                tools:layout_conversion_absoluteHeight="0dp"
-                tools:layout_conversion_absoluteWidth="0dp"
-                tools:layout_editor_absoluteX="137dp"
                 tools:layout_editor_absoluteY="0dp" />
 
             <com.google.android.material.tabs.TabItem

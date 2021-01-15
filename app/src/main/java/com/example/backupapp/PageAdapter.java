@@ -17,7 +17,7 @@ import java.util.HashMap;
 * https://www.w3schools.com/java/java_enums.asp
 */
 public class PageAdapter extends FragmentStateAdapter {
-    private static final int NUM_PAGES = 3;
+    private static final int NUM_PAGES = 2;
     private TabLayout tab_bar;
 
     public PageAdapter(FragmentActivity fragment) { super(fragment); }
@@ -26,9 +26,7 @@ public class PageAdapter extends FragmentStateAdapter {
     @NotNull
     public Fragment createFragment(int position) {
         if (position == 0) { // 0 = Backup
-            return new FragmentClass("backup");
-        } else if (position == 1) { // 1 = Restore
-            return new FragmentClass("restore");
+            return new FragmentClass("backup_restore");
         } else { // 2 = Settings
             return new FragmentClass("settings");
         }
