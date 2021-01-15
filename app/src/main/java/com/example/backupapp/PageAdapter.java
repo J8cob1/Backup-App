@@ -2,14 +2,11 @@ package com.example.backupapp;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.google.android.material.tabs.TabLayout;
 
 import org.jetbrains.annotations.NotNull;
-
-import java.util.HashMap;
 
 /*
 * The fragment adapter for use with ViewPager2. It is responsible for loading XML fragments
@@ -26,9 +23,9 @@ public class PageAdapter extends FragmentStateAdapter {
     @NotNull
     public Fragment createFragment(int position) {
         if (position == 0) { // 0 = Backup
-            return new FragmentClass("backup_restore");
+            return new BackupRestoreFragmentClass();
         } else { // 2 = Settings
-            return new FragmentClass("settings");
+            return new SettingsFragmentClass();
         }
     }
 
