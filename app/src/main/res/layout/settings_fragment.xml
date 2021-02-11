@@ -66,6 +66,7 @@
                 android:textStyle="bold" />
 
             <EditText
+                android:id="@+id/settings_location_textbox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:autofillHints=""
@@ -93,28 +94,28 @@
             android:orientation="vertical">
 
             <CheckBox
-                android:id="@+id/checkBox"
+                android:id="@+id/settings_texts_checkbox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/settings_tab_backup_content_texts"
                 android:textSize="18sp" />
 
             <CheckBox
-                android:id="@+id/checkBox2"
+                android:id="@+id/settings_photo_video_checkbox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/settings_tab_backup_content_photo_video"
                 android:textSize="18sp" />
 
             <CheckBox
-                android:id="@+id/checkBox3"
+                android:id="@+id/settings_contacts_checkbox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/settings_tab_backup_content_contacts"
                 android:textSize="18sp" />
 
             <CheckBox
-                android:id="@+id/checkBox4"
+                android:id="@+id/settings_apps_checkbox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/settings_tab_backup_content_apps"
