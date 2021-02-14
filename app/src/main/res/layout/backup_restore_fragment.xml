@@ -2,7 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/settings_tab_view"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,10 +14,11 @@
         <TextView
             android:id="@+id/backup_restore_label"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/design_default_color_primary"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
+            android:gravity="center"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
             android:text="@string/backup_restore_tab_restore_label"
             android:textColor="@color/design_default_color_on_primary"
             android:textSize="30sp"
@@ -25,16 +27,25 @@
         <LinearLayout
             android:id="@+id/previous_backups_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
         </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
         <Button
             android:id="@+id/backup_restore_new_backup_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/backup_restore_tab_new_backup_button_text" />
+            android:layout_margin="10dp"
+            android:background="@color/design_default_color_primary"
+            android:text="@string/backup_restore_tab_new_backup_button_text"
+            android:textColor="@color/design_default_color_on_primary"
+            android:textSize="18sp" />
 
     </LinearLayout>
 </ScrollView>
