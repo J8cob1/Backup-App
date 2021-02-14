@@ -2,7 +2,9 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/settings_tab_view"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:foregroundGravity="fill">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,10 +14,13 @@
         <TextView
             android:id="@+id/backup_restore_label"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@color/design_default_color_primary"
+            android:gravity="center"
             android:paddingLeft="5dp"
+            android:paddingTop="3dp"
             android:paddingRight="5dp"
+            android:paddingBottom="4dp"
             android:text="@string/settings_tab_backup_loc"
             android:textColor="@color/design_default_color_on_primary"
             android:textSize="30sp"
@@ -23,7 +28,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="fill_horizontal"
             android:orientation="horizontal"
             android:paddingLeft="5dp"
@@ -35,6 +40,9 @@
                 android:id="@+id/settings_type_label"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
                 android:text="@string/settings_tab_backup_loc_type_label"
                 android:textSize="24sp"
                 android:textStyle="bold" />
@@ -48,8 +56,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"
+            android:layout_height="wrap_content"
             android:gravity="start"
             android:orientation="horizontal"
             android:paddingLeft="5dp"
@@ -61,15 +68,18 @@
                 android:id="@+id/settings_location_label"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:gravity="center"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
                 android:text="@string/settings_tab_backup_loc_label"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
             <EditText
+                android:id="@+id/settings_location_textbox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:autofillHints=""
-                android:ems="10"
                 android:hint="@string/settings_tab_backup_loc_hint"
                 android:inputType="textPersonName" />
 
@@ -78,10 +88,14 @@
         <TextView
             android:id="@+id/settings_label_2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:background="@color/design_default_color_primary"
+            android:gravity="center"
             android:paddingLeft="5dp"
+            android:paddingTop="3dp"
             android:paddingRight="5dp"
+            android:paddingBottom="4dp"
             android:text="@string/settings_tab_backup_content"
             android:textColor="@color/design_default_color_on_primary"
             android:textSize="30sp"
@@ -89,38 +103,58 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <CheckBox
-                android:id="@+id/checkBox"
+                android:id="@+id/settings_texts_checkbox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/settings_tab_backup_content_texts"
                 android:textSize="18sp" />
 
             <CheckBox
-                android:id="@+id/checkBox2"
+                android:id="@+id/settings_photo_video_checkbox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/settings_tab_backup_content_photo_video"
                 android:textSize="18sp" />
 
             <CheckBox
-                android:id="@+id/checkBox3"
+                android:id="@+id/settings_contacts_checkbox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/settings_tab_backup_content_contacts"
                 android:textSize="18sp" />
 
             <CheckBox
-                android:id="@+id/checkBox4"
+                android:id="@+id/settings_apps_checkbox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/settings_tab_backup_content_apps"
                 android:textSize="18sp" />
 
         </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/settings_save_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/design_default_color_primary"
+            android:text="@string/settings_tab_save_button"
+            android:textColor="@color/design_default_color_on_primary"
+            android:textSize="18sp" />
 
     </LinearLayout>
 </ScrollView>

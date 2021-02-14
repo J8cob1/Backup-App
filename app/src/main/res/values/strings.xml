@@ -8,20 +8,20 @@
     <string name="settings_tab_backup_loc_label">Location:</string>
     <string name="settings_tab_backup_loc_hint">Enter Specific Location Here</string>
     <string-array name="location_types">
-        <item>Local Storage</item>
-        <item>Samba (Windows Network) Share</item>
-        <item>Linux Network Share (Not Yet Supported)</item>
+        <item>Samba Share</item>
+        <!--<item>Linux Network Share (Not Yet Supported)</item>
         <item>MAC Network Share (Not Yet Supported)</item>
         <item>NextCloud (Not Yet Supported)</item>
         <item>OwnCloud? (Not Yet Supported)</item>
         <item>Google Drive (Not Yet Supported)</item>
-        <item>IDrive (Not Yet Supported)</item>
+        <item>IDrive (Not Yet Supported)</item>-->
     </string-array>
     <string name="settings_tab_backup_content">What to Backup:</string>
     <string name="settings_tab_backup_content_texts">Text Messages</string>
     <string name="settings_tab_backup_content_photo_video">Photos and Videos</string>
     <string name="settings_tab_backup_content_contacts">Contacts</string>
     <string name="settings_tab_backup_content_apps">Apps</string>
+    <string name="settings_tab_save_button">Save</string>
 
     <string name="backup_restore_tab_restore_label">Restore</string>
     <string name="backup_restore_tab_new_backup_button_text">Create New Backup</string>
