@@ -21,6 +21,7 @@
     <string name="settings_tab_backup_content_photo_video">Photos and Videos</string>
     <string name="settings_tab_backup_content_contacts">Contacts</string>
     <string name="settings_tab_backup_content_apps">Apps</string>
+    <string name="settings_tab_save_button">Save</string>
 
     <string name="backup_restore_tab_restore_label">Restore</string>
     <string name="backup_restore_tab_new_backup_button_text">Create New Backup</string>

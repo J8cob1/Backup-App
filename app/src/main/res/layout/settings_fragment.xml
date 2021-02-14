@@ -123,5 +123,12 @@
 
         </LinearLayout>
 
+        <Button
+            android:id="@+id/settings_save_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_tab_save_button"
+            android:textSize="18sp" />
+
     </LinearLayout>
 </ScrollView>

@@ -6,34 +6,31 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import androidx.core.util.LogWriter;
 import androidx.fragment.app.Fragment;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.io.OutputStreamWriter;
-import java.io.Writer;
-import java.util.Scanner;
+import java.util.HashMap;
+import java.util.Map;
 
-// Loads the settings fragment xml as it's view
+// Loads the settings fragment xml
 // https://developer.android.com/training/animation/screen-slide-2
 public class SettingsFragmentClass extends Fragment {
-    private int fragmentXMLResourceID = -1;
     private String configLocation = "";
-    private String filesDir = "";
-    private enum box {Checked, NotChecked};
 
     /*
-    * Load settings to persistent storage
+    *  Set the views using the given map of settings
+    *  - values: a map containing the category and value associated with the category
+    *  - settingsView: the view for the settings fragment that contains the UI elements we want to load values into
     */
-    private void loadSettings(View settingsView) {
-        // Get view items
+    private void load(Map<String, String> values, View settingsView) {
+        // Get UI elements
         Spinner typeSpinner = settingsView.findViewById(R.id.settings_type_spinner);
         EditText locationEditText = settingsView.findViewById(R.id.settings_location_textbox);
         CheckBox textsCheckbox = settingsView.findViewById(R.id.settings_texts_checkbox);
@@ -41,35 +38,90 @@ public class SettingsFragmentClass extends Fragment {
         CheckBox contactsCheckbox = settingsView.findViewById(R.id.settings_contacts_checkbox);
         CheckBox appsCheckbox = settingsView.findViewById(R.id.settings_apps_checkbox);
 
-        // Set the values of the view items based on the saved text
-        // Try reading from the configuration file. Load default settings on failure
-        try {
-            // Read in config file and save it in memory as a string
-            byte[] data = new byte[512];
-            FileInputStream reader = new FileInputStream(this.configLocation);
-            reader.read(data);
-            String config = new String(data);
+        // Set some defaults
+        typeSpinner.setSelection(0);
+        locationEditText.setText("Samba Share");
+        textsCheckbox.setChecked(true);
+        photoVideoCheckbox.setChecked(true);
+        contactsCheckbox.setChecked(true);
+        appsCheckbox.setChecked(true);
 
-            Log.d("Settings", config);
-        } catch(java.io.IOException e) {
-            typeSpinner.setSelection(0);
-            locationEditText.setText("Samba Share");
-            textsCheckbox.setChecked(true);
-            photoVideoCheckbox.setChecked(true);
-            contactsCheckbox.setChecked(true);
-            appsCheckbox.setChecked(true);
+        // For each setting we were given, overload the appropriate UI element
+        // https://stackoverflow.com/questions/46898/how-do-i-efficiently-iterate-over-each-entry-in-a-java-map
+        for (Map.Entry<String, String> entry : values.entrySet()) {
+            // Declaring some variables up here, since I can't declare separate variables within the case statements
+            boolean isChecked = false;
+            int selection = 0;
 
-            Log.w("Settings", "No configuration file found. Loaded default settings. Error: " + e.toString());
+            // For each category, set the given value
+            String value = entry.getValue();
+            switch (entry.getKey()) {
+                case "BackupLocType":
+                    selection = Integer.parseInt(value);
+                    typeSpinner.setSelection(selection);
+                    break;
+                case "BackupLoc":
+                    locationEditText.setText(value);
+                    break;
+                case "SaveTexts":
+                    isChecked = Boolean.parseBoolean(value);
+                    textsCheckbox.setChecked(isChecked);
+                    break;
+                case "SavePhotosVideos":
+                    isChecked = Boolean.parseBoolean(value);
+                    photoVideoCheckbox.setChecked(isChecked);
+                    break;
+                case "SaveContacts":
+                    isChecked = Boolean.parseBoolean(value);
+                    contactsCheckbox.setChecked(isChecked);
+                    break;
+                case "SaveApps":
+                    isChecked = Boolean.parseBoolean(value);
+                    appsCheckbox.setChecked(isChecked);
+                    break;
+            }
         }
     }
 
     /*
+    * Load saved settings to persistent storage
+    * - settingsView: the view for the settings fragment page
+    */
+    private void loadSettings(View settingsView) {
+        // Set the values of the view items based on the saved text
+        // Try reading from the configuration file. Load default settings on failure
+        Map<String, String> settings = new HashMap<String, String>();
+        try {
+            // Read the config file
+            FileReader fileReader = new FileReader(this.configLocation);
+            BufferedReader reader = new BufferedReader(fileReader);
+            String line = reader.readLine();
+            while(line != null) {
+                // Get category and value of the setting represented by this line of the text and keep track of it
+                int separated_at = line.indexOf(':');
+                String category = line.substring(0, separated_at);
+                String value = line.substring(separated_at + 2); // the "+ 2" helps us skip the ": " characters in the line (not just those before it)
+                settings.put(category, value);
+
+                // Process the next line
+                line = reader.readLine();
+            }
+            reader.close();
+        } catch(java.io.IOException e) {
+            Log.w("Settings", "No configuration file found. Loaded default settings. Error: " + e.toString());
+        } finally {
+            this.load(settings, settingsView);
+        }
+    }
+
+
+    /*
      * Save settings to persistent storage
      */
-    private void saveSettings(View settingsView) {
+    public void saveSettings(View settingsView) {
         // Try to write settings to file
         try {
-            // Gather the settings from the view
+            // Gather the UI elements
             Spinner typeSpinner = settingsView.findViewById(R.id.settings_type_spinner);
             EditText locationEditText = settingsView.findViewById(R.id.settings_location_textbox);
             CheckBox textsCheckbox = settingsView.findViewById(R.id.settings_texts_checkbox);
@@ -77,6 +129,7 @@ public class SettingsFragmentClass extends Fragment {
             CheckBox contactsCheckbox = settingsView.findViewById(R.id.settings_contacts_checkbox);
             CheckBox appsCheckbox = settingsView.findViewById(R.id.settings_apps_checkbox);
 
+            // Get the values for the UI elements
             long selectedType = typeSpinner.getSelectedItemId();
             String location = locationEditText.getText().toString();
             boolean saveTexts = textsCheckbox.isChecked();
@@ -84,17 +137,14 @@ public class SettingsFragmentClass extends Fragment {
             boolean saveContacts = contactsCheckbox.isChecked();
             boolean saveApps = appsCheckbox.isChecked();
 
-            // Save the settings to file
-            //FileOutputStream outputFile = getContext().openFileOutput("settings.txt", Context.MODE_PRIVATE);
-            //OutputStreamWriter outputStream = new OutputStreamWriter(outputFile);
-            FileWriter writer = new FileWriter(getActivity().getFilesDir().toString() + "/settings.txt");
-            writer.write("BackupLocType: " + selectedType);
-            writer.write("BackupLoc: " + location);
-            writer.write("SaveTexts: " + saveTexts);
-            writer.write("SavePhotosVideos: " + savePhotosAndVideos);
-            writer.write("SaveContacts: " + saveContacts);
-            writer.write("SaveApps: " + saveApps);
-            writer.flush();
+            // Save the settings to file;
+            FileWriter writer = new FileWriter(this.configLocation);
+            writer.write("BackupLocType: " + selectedType + '\n');
+            writer.write("BackupLoc: " + location + '\n');
+            writer.write("SaveTexts: " + saveTexts + '\n');
+            writer.write("SavePhotosVideos: " + savePhotosAndVideos + '\n');
+            writer.write("SaveContacts: " + saveContacts + '\n');
+            writer.write("SaveApps: " + saveApps + '\n');
             writer.close();
         } catch(java.io.FileNotFoundException e) {
             Log.e("Settings", "Failed to save settings to file: " + e.toString());
@@ -105,12 +155,6 @@ public class SettingsFragmentClass extends Fragment {
         // https://stackoverflow.com/questions/14376807/read-write-string-from-to-a-file-in-android
     }
 
-    // Default constructor
-    public SettingsFragmentClass() {
-        // Load settings data
-        //Log.d("Test", getActivity().getFilesDir().toString());
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Save configuration file location. We will need this for saving and loading files
@@ -119,14 +163,24 @@ public class SettingsFragmentClass extends Fragment {
         // Generate view and load existing settings, if they are any
         View view = inflater.inflate(R.layout.settings_fragment, container, false);
 
-        this.saveSettings(view);
+        // Load configuration settings
         this.loadSettings(view);
+
+        // Set the save button listener
+        // settings_save_button
+        Button saveButton = view.findViewById(R.id.settings_save_button);
+        SettingsFragmentClass thisClass = this;
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                thisClass.saveSettings(view);
+            }
+        });
 
         return view;
     }
-
-    // The peeps at StackOverflow say that I can override the onAttach method to access the activity right after it loads
-    public void onCreate() {
-        Log.d("Test", "SDFDS");
-    }
 }
+
+/*
+* Thank you stack overflow, w3schools, GeeksForGeeks, and official android developer documentation for the helpful posts/pages
+*/
