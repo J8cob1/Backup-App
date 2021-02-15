@@ -12,14 +12,20 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import android.widget.Button;
 
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 // Loads the settings fragment xml as it's view
 // https://developer.android.com/training/animation/screen-slide-2
 public class BackupRestoreFragmentClass extends Fragment {
     private int fragmentXMLResourceID = -1;
+    private ThisApplication app = null;
 
     public BackupRestoreFragmentClass() {}
 
@@ -31,10 +37,14 @@ public class BackupRestoreFragmentClass extends Fragment {
 
         // Initiate New BackupButton
         Button newBackupButton = (Button) view.findViewById(R.id.backup_restore_new_backup_button);
-        /*newBackupButton.setOnClickListener(new View.OnClickListener() {
+
+        this.app = (ThisApplication) this.getActivity().getApplication();
+
+        BackupRestoreFragmentClass thisClass = this;
+        newBackupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
+                /*Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
                 Objects.requireNonNull(getActivity()).startActivityForResult(intent, 0);
                 //Uri location = Uri.parse(intent.getData());
 
@@ -45,11 +55,17 @@ public class BackupRestoreFragmentClass extends Fragment {
                     null == null;
                 } catch (java.io.IOException exception) {
                     Log.e("Problem", "Something went wrong creating a new backup");
-                }
+                }*/
+                Log.d("BUTTON", "PRESSED");
+                PerformSambaBackup classThread = new PerformSambaBackup(thisClass.app);
+                classThread.run();
+                //ExecutorService executor = Executors.newSingleThreadExecutor();
+                //executor.;
             }
-        });*/
+        });
         return view;
     }
+
 }
 
 // https://developer.android.com/guide/navigation/navigation-swipe-view-2

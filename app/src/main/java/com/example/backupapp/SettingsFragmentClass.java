@@ -132,7 +132,7 @@ public class SettingsFragmentClass extends Fragment {
 
         // Save configuration file location. We will need this for saving and loading files
         this.app = (ThisApplication) this.getActivity().getApplication();
-        this.app.CONFIG_LOC = getActivity().getFilesDir().toString() + "/config.txt";
+        this.app.setConfigLocation(getActivity().getFilesDir().toString() + "/config.txt");
 
         // Load configuration settings
         this.loadSettings(view);

@@ -1,6 +1,7 @@
 package com.example.backupapp;
 
 import android.app.Application;
+import android.content.Context;
 import android.util.Log;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -12,16 +13,20 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /*
 * The "Application" class of the BackupApp, which we will use to store global variables and methods
 */
 public class ThisApplication extends Application {
     public String configLocation = "";
+    public Context context = null;
     public enum BACKUP_LOC_TYPES { SAMBA }; // Add to here when implementing more types
 
     public void setConfigLocation(String configLoc) {
-        this.configLocation = configLocation;
+        this.configLocation = configLoc;
+        this.context = this.getApplicationContext();
     }
 
     // Get the content of the configuration file
@@ -37,7 +42,6 @@ public class ThisApplication extends Application {
             String category = nextLineOfConfig.substring(0, separated_at);
             String value = nextLineOfConfig.substring(separated_at + 2); // the "+ 2" helps us skip the ": " characters in the line (not just those before it)
             configurationSettings.put(category, value);
-            Log.d("Category-Value", category + "--" +  value);
 
             // Try to get the next line
             nextLineOfConfig = reader.readLine();
