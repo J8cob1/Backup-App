@@ -21,7 +21,6 @@ import java.util.Objects;
 public class BackupRestoreFragmentClass extends Fragment {
     private int fragmentXMLResourceID = -1;
 
-    // Default constructor
     public BackupRestoreFragmentClass() {}
 
     @Override
@@ -32,7 +31,7 @@ public class BackupRestoreFragmentClass extends Fragment {
 
         // Initiate New BackupButton
         Button newBackupButton = (Button) view.findViewById(R.id.backup_restore_new_backup_button);
-        newBackupButton.setOnClickListener(new View.OnClickListener() {
+        /*newBackupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
@@ -43,16 +42,12 @@ public class BackupRestoreFragmentClass extends Fragment {
                 // Starting by exporting a simple text file to disk
                 // https://stackoverflow.com/questions/14376807/read-write-string-from-to-a-file-in-android
                 try {
-                    OutputStreamWriter output = new OutputStreamWriter(getContext().openFileOutput("test.txt", Context.MODE_PRIVATE));
-                    output.write("HELLO. THIS IS A TEST");
-                    output.close();
+                    null == null;
                 } catch (java.io.IOException exception) {
                     Log.e("Problem", "Something went wrong creating a new backup");
                 }
-
-                Log.d("HE", "HE");
             }
-        });
+        });*/
         return view;
     }
 }

@@ -9,12 +9,12 @@
     <string name="settings_tab_backup_loc_hint">Enter Specific Location Here</string>
     <string-array name="location_types">
         <item>Samba Share</item>
-        <!--<item>Linux Network Share (Not Yet Supported)</item>
-        <item>MAC Network Share (Not Yet Supported)</item>
-        <item>NextCloud (Not Yet Supported)</item>
-        <item>OwnCloud? (Not Yet Supported)</item>
-        <item>Google Drive (Not Yet Supported)</item>
-        <item>IDrive (Not Yet Supported)</item>-->
+        <!--<item>Linux Network Share</item>
+        <item>MAC Network Share</item>
+        <item>WebDav</item>
+        <item>OwnCloud</item>
+        <item>Google Drive</item>
+        <item>IDrive</item>-->
     </string-array>
     <string name="settings_tab_backup_content">What to Backup:</string>
     <string name="settings_tab_backup_content_texts">Text Messages</string>
